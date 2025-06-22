@@ -8,49 +8,45 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: #1DA1F2;
-      font-family: 'Arial Black', sans-serif;
+      background-color: #1DA1F2; /* Figma-style baby blue */
+      font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
     .top-image-container {
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
+      height: 35vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      height: 35vh;
-      overflow: hidden;
-    }
-
-    .top-image {
-      width: auto;
-      height: 100%;
-      max-width: none;
-      object-fit: cover;
       pointer-events: none;
       z-index: 0;
     }
 
+    .top-image {
+      height: 100%;
+      object-fit: cover;
+    }
+
     .banner {
-      position: absolute;
-      top: 55%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 2rem;
+      font-size: 2.8rem;
+      font-weight: 600;
       text-align: center;
       z-index: 1;
-      padding: 0.75rem 1.5rem;
-      background-color: rgba(255, 255, 255, 0.4);
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
       transition: color 0.3s ease;
+      padding: 0 1rem;
+      max-width: 90vw;
     }
 
     @media (max-width: 768px) {
       .banner {
-        font-size: 1.4rem;
-        width: 90%;
+        font-size: 2rem;
       }
     }
   </style>
@@ -102,8 +98,7 @@
 
       window.addEventListener('resize', updateTextColor);
       window.addEventListener('scroll', updateTextColor);
-      setTimeout(updateTextColor, 500); // slight delay to allow layout
-
+      setTimeout(updateTextColor, 500);
       img.onload = updateTextColor;
     };
   </script>
