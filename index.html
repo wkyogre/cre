@@ -30,23 +30,22 @@
 
     .banner {
       position: absolute;
-      top: 1rem;
-      right: 2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 2.8rem;
       font-weight: 600;
-      text-align: right;
+      text-align: center;
       color: #111;
       z-index: 1;
-      max-width: 40vw;
-      line-height: 1.2;
+      line-height: 1.3;
+      max-width: 90vw;
       transition: color 0.3s ease;
     }
 
     @media (max-width: 768px) {
       .banner {
         font-size: 1.8rem;
-        right: 1rem;
-        max-width: 60vw;
       }
     }
   </style>
