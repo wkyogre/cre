@@ -3,54 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>cre.github.io</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <title>Work in Progress — vein.live</title>
   <style>
     * {
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #1e1f26, #3e3f4e);
-      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background-color: #f5f5f7;
+      color: #333;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+    }
+
+    .container {
       text-align: center;
+      max-width: 480px;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
 
     h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5em;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.05);
-        opacity: 0.85;
-      }
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     p {
-      font-weight: 400;
-      opacity: 0.8;
+      font-size: 1rem;
+      color: #666;
+      margin-top: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: #e5e5ea;
+      color: #6e6e73;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>🚧 Work in Progress 🚧</h1>
-    <p>vein.live</p>
+  <div class="container">
+    <div class="badge">Under Construction</div>
+    <h1>Work in Progress</h1>
+    <p>Check back soon at <strong>vein.live</strong>.</p>
   </div>
 </body>
 </html>
