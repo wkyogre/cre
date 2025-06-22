@@ -8,45 +8,45 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: #1DA1F2; /* Figma-style baby blue */
+      background-color: #E6F0FA; /* Figma-style light blue */
       font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
     .top-image-container {
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
+      right: 0;
+      width: auto;
       height: 35vh;
-      display: flex;
-      justify-content: center;
       pointer-events: none;
       z-index: 0;
     }
 
     .top-image {
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .banner {
+      position: absolute;
+      top: 1rem;
+      right: 2rem;
       font-size: 2.8rem;
       font-weight: 600;
-      text-align: center;
+      text-align: right;
+      color: #111;
       z-index: 1;
+      max-width: 40vw;
+      line-height: 1.2;
       transition: color 0.3s ease;
-      padding: 0 1rem;
-      max-width: 90vw;
     }
 
     @media (max-width: 768px) {
       .banner {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        right: 1rem;
+        max-width: 60vw;
       }
     }
   </style>
@@ -56,7 +56,7 @@
     <img src="top.png" alt="" class="top-image" id="kaijuImage">
   </div>
   <div class="banner" id="banner">
-    Work in progress — check back soon
+    Work in progress —<br>check back soon
   </div>
 
   <script>
