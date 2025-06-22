@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title></title> <!-- intentionally blank -->
+  <meta charset="UTF-8" />
+  <title></title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      background-color: #1DA1F2; /* Baby blue */
+      padding: 0;
+      height: 100%;
+      background-color: #1DA1F2;
       font-family: 'Arial Black', sans-serif;
-      color: #111;
-      height: 100vh;
       overflow: hidden;
+    }
+
+    .top-image-container {
       position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      height: 35vh;
+      overflow: hidden;
     }
 
     .top-image {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
-      max-width: 1200px;
-      z-index: 0;
+      width: auto;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
       pointer-events: none;
+      z-index: 0;
     }
 
     .banner {
@@ -30,10 +37,14 @@
       top: 55%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 1.8rem;
+      font-size: 2rem;
       text-align: center;
       z-index: 1;
-      color: #111;
+      padding: 0.75rem 1.5rem;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+      transition: color 0.3s ease;
     }
 
     @media (max-width: 768px) {
@@ -45,9 +56,56 @@
   </style>
 </head>
 <body>
-  <img src="top.png" alt="" class="top-image">
-  <div class="banner">
+  <div class="top-image-container">
+    <img src="top.png" alt="" class="top-image" id="kaijuImage">
+  </div>
+  <div class="banner" id="banner">
     Work in progress — check back soon
   </div>
+
+  <script>
+    window.onload = () => {
+      const banner = document.getElementById('banner');
+      const img = document.getElementById('kaijuImage');
+
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      const updateTextColor = () => {
+        const rect = banner.getBoundingClientRect();
+        const imgRect = img.getBoundingClientRect();
+
+        const overlapTop = Math.max(rect.top, imgRect.top);
+        const overlapLeft = Math.max(rect.left, imgRect.left);
+        const overlapBottom = Math.min(rect.bottom, imgRect.bottom);
+        const overlapRight = Math.min(rect.right, imgRect.right);
+
+        const overlapWidth = overlapRight - overlapLeft;
+        const overlapHeight = overlapBottom - overlapTop;
+
+        if (overlapWidth > 0 && overlapHeight > 0) {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          const sampleX = ((overlapLeft + overlapRight) / 2 - imgRect.left) * (canvas.width / imgRect.width);
+          const sampleY = ((overlapTop + overlapBottom) / 2 - imgRect.top) * (canvas.height / imgRect.height);
+
+          const pixel = ctx.getImageData(sampleX, sampleY, 1, 1).data;
+          const brightness = (0.299 * pixel[0] + 0.587 * pixel[1] + 0.114 * pixel[2]);
+
+          banner.style.color = brightness < 100 ? 'white' : '#111';
+        } else {
+          banner.style.color = '#111';
+        }
+      };
+
+      window.addEventListener('resize', updateTextColor);
+      window.addEventListener('scroll', updateTextColor);
+      setTimeout(updateTextColor, 500); // slight delay to allow layout
+
+      img.onload = updateTextColor;
+    };
+  </script>
 </body>
 </html>
