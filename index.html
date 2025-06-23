@@ -11,6 +11,12 @@
       background-color: #E6F0FA; /* Figma-style light blue */
       font-family: 'Helvetica Neue', 'Segoe UI', sans-serif;
       overflow: hidden;
+      user-select: none; /* disable text/image selection globally */
+    }
+
+    * {
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     .top-image-container {
@@ -26,6 +32,12 @@
     .top-image {
       height: 100%;
       object-fit: contain;
+      user-drag: none;
+      -webkit-user-drag: none;
+      -moz-user-drag: none;
+      -ms-user-drag: none;
+      user-select: none;
+      pointer-events: none;
     }
 
     .banner {
@@ -50,15 +62,18 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false">
   <div class="top-image-container">
-    <img src="top.png" alt="" class="top-image" id="kaijuImage">
+    <img src="top.png" alt="" class="top-image" id="kaijuImage" draggable="false">
   </div>
   <div class="banner" id="banner">
     Work in progress —<br>check back soon
   </div>
 
   <script>
+    // Prevent right-click context menu globally (for good measure)
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
     window.onload = () => {
       const banner = document.getElementById('banner');
       const img = document.getElementById('kaijuImage');
